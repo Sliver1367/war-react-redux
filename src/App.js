@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React from 'react';
+import Game from "./components/Game";
+import Result from "./components/Result";
+import Start from "./components/Start";
 import './App.css';
+import {useSelector} from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    const page = useSelector(state => state.page)
+
+     switch (page) {
+            case 'Game':
+                return (
+                    <div className={'field'}>
+                        <Game/>
+                    </div>
+                )
+            case 'Result':
+                return (
+                    <div className={'field'}>
+                        <Result/>
+                    </div>
+                )
+            default:
+                return (
+                    <div className={'field'}>
+                        <Start/>
+                    </div>
+                )
+        }
+
 }
 
 export default App;
